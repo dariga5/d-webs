@@ -2,7 +2,7 @@
     "Global" : {
         "Ports" : [80,443]
     },
-    "Logers" : 
+    "Loggers" : 
     [
         {   
             "Mode" : "STDOUT",
