@@ -1,0 +1,18 @@
+{
+    "Global" : {
+        "Ports" : [80,443],
+        "Max_conn" : 10,
+        "Workers" : 4
+    },
+    "Logers" : 
+    [
+        {   
+            "Mode" : "STDOUT",
+            "Params" : []
+        },
+        {   
+            "Mode" : "FILE",
+            "Params" : ["path=example.log"]
+        }
+    ]
+}
