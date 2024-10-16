@@ -33,9 +33,9 @@ func config(path string) *loggers {
 
 	byteValue, _ := io.ReadAll(jsonFile)
 
-	var cfgs loggers
+	loggers := new(loggers)
 
-	json.Unmarshal([]byte(byteValue), &cfgs)
+	json.Unmarshal([]byte(byteValue), loggers)
 
-	return &cfgs
+	return loggers
 }
