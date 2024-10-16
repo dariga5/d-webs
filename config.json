@@ -1,8 +1,6 @@
 {
     "Global" : {
-        "Ports" : [80,443],
-        "Max_conn" : 10,
-        "Workers" : 4
+        "Ports" : [80,443]
     },
     "Logers" : 
     [
