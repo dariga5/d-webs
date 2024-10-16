@@ -10,7 +10,7 @@ type HTTPHost struct {
 	Query string
 }
 
-func ParseURI(url URL) HTTPHost {
+func ParseURI(url URL) *HTTPHost {
 
 	var proto string
 	var host string
@@ -83,13 +83,11 @@ func ParseURI(url URL) HTTPHost {
 		}
 	}
 
-	var httpHost HTTPHost
-
-	httpHost.Proto = proto
-	httpHost.Host = host
-	httpHost.Port = port
-	httpHost.Path = path
-	httpHost.Query = query
-
-	return httpHost
+	return &HTTPHost{
+		Proto: proto,
+		Host:  host,
+		Port:  port,
+		Path:  path,
+		Query: query,
+	}
 }
