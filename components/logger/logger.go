@@ -27,15 +27,17 @@ func InitLogger(path string) {
 
 func log(logmsg *logInfo) {
 
-	//TODO ADD TIME CREATE LOG
 	format := time.Now().Format(time.RFC822) + " " + "[" + logmsg.Loglvl + "]" + " " + logmsg.Message
 
 	for _, item := range cfg.Loggers {
+
 		switch item.Mode {
+
 		case "FILE":
 			params := make(map[string]string)
 
 			for _, paramtr := range item.Params {
+
 				arr := strings.Split(paramtr, "=")
 
 				key := arr[0]
@@ -47,16 +49,23 @@ func log(logmsg *logInfo) {
 			path, ok := params["path"]
 
 			if ok {
+
 				mut.Lock()
+
 				file, err := os.OpenFile(path, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+
 				if err == nil {
+
 					_, err = file.WriteString(format + "\n")
+
 					if err != nil {
 						fmt.Println(err.Error())
 					}
 				}
+
 				mut.Unlock()
 			}
+
 		default:
 			fmt.Println(format)
 		}
