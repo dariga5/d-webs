@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-type log struct {
+type logInfo struct {
 	Loglvl  string
 	Message string
 }
