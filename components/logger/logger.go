@@ -73,6 +73,11 @@ func log(logmsg *logInfo) {
 }
 
 func Debug(msg string) {
+
+	if cfg.LogLevel != DEBUG {
+		return
+	}
+
 	log(&logInfo{
 		Loglvl:  DEBUG,
 		Message: msg,

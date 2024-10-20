@@ -33,5 +33,34 @@ func InitServer(path string) {
 			logger.Info("Server closed port " + port)
 		}()
 
+		for {
+			conn, err := l.Accept()
+
+			if err != nil {
+				logger.Error(err.Error())
+			}
+
+			addr := conn.RemoteAddr()
+
+			logger.Info("Connection from : " + addr.String() + "init")
+
+			go worcker(conn)
+		}
+	}
+}
+
+func worcker(conn net.Conn) {
+	buff := make([]byte, 512)
+	for {
+		_, err := conn.Read(buff)
+
+		if err != nil {
+			logger.Error(err.Error())
+		}
+
+		str := string(buff[:])
+
+		logger.Debug("REG : " + str)
+
 	}
 }

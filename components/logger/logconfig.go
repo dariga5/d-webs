@@ -13,7 +13,8 @@ type logInfo struct {
 }
 
 type loggers struct {
-	Loggers []loggerCfg `json:"Loggers"`
+	LogLevel string      `json:"LogLevel"`
+	Loggers  []loggerCfg `json:"Loggers"`
 }
 
 type loggerCfg struct {

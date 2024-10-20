@@ -1,5 +1,6 @@
 {
     "Ports" : [":80",":443"],
+    "LogLevel" : "INFO",
     "Loggers" : 
     [
         {   
