@@ -8,4 +8,5 @@ import (
 func main() {
 	logger.InitLogger("config.json")
 	server.InitServer("config.json")
+
 }

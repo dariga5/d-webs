@@ -19,19 +19,15 @@ func InitServer(path string) {
 	}
 
 	for _, port := range serveCfg.Ports {
-		l, err := net.Listen("tcp4", port)
+
+		logger.Info("SERVER OPEN PORT " + port)
+
+		l, err := net.Listen("tcp", port)
 
 		if err != nil {
 			logger.Error(err.Error())
 			return
-		} else {
-			logger.Info("Server open port " + port)
 		}
-
-		defer func() {
-			l.Close()
-			logger.Info("Server closed port " + port)
-		}()
 
 		for {
 			conn, err := l.Accept()
@@ -40,27 +36,14 @@ func InitServer(path string) {
 				logger.Error(err.Error())
 			}
 
-			addr := conn.RemoteAddr()
+			go func(conn net.Conn) {
+				buff := make([]byte, 64)
 
-			logger.Info("Connection from : " + addr.String() + "init")
+				conn.Read(buff)
 
-			go worcker(conn)
+				logger.Debug("MSG - " + string(buff[:]))
+
+			}(conn)
 		}
-	}
-}
-
-func worcker(conn net.Conn) {
-	buff := make([]byte, 512)
-	for {
-		_, err := conn.Read(buff)
-
-		if err != nil {
-			logger.Error(err.Error())
-		}
-
-		str := string(buff[:])
-
-		logger.Debug("REG : " + str)
-
 	}
 }
